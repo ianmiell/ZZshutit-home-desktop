@@ -115,6 +115,7 @@ end''')
 		shutit.install('ubuntu-restricted-extras')
 		shutit.install('libavcodec-extra')
 		shutit.install('libdvd-pkg')
+		shutit.install('pychecker')
 		shutit.send('pip install shutit')
 
 		shutit.send('useradd -m -s /bin/bash imiell')
