@@ -79,6 +79,7 @@ class shutit_home_setup(ShutItModule):
 		module_name = 'shutit_home_setup_' + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))
 		shutit.send('rm -rf /tmp/' + module_name + ' && mkdir -p /tmp/' + module_name + ' && cd /tmp/' + module_name)
 		shutit.send('vagrant init ' + vagrant_image)
+		print memory
 		shutit.send_file('/tmp/' + module_name + '/Vagrantfile','''
 Vagrant.configure(2) do |config|
   config.vm.box = "''' + vagrant_image + '''"
@@ -90,7 +91,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb|
     vb.gui = ''' + gui + '''
     vb.memory = "''' + memory + '''"
-    vb.name = "shutit_cobbly"
+    vb.name = "shutit_home_setup"
   end
 end''')
 		shutit.send('vagrant up --provider virtualbox',timeout=99999)
@@ -112,9 +113,9 @@ end''')
 		shutit.install('lubuntu-desktop')
 		shutit.install('gnome-terminal')
 		shutit.install('virtualbox-guest-dkms')
-		shutit.install('ubuntu-restricted-extras')
-		shutit.install('libavcodec-extra')
-		shutit.install('libdvd-pkg')
+		#shutit.install('ubuntu-restricted-extras')
+		#shutit.install('libavcodec-extra')
+		#shutit.install('libdvd-pkg')
 		shutit.install('pychecker')
 		shutit.send('pip install shutit')
 
@@ -138,7 +139,6 @@ end''')
 		#shutit.multisend('ssh-keygen -f ~/.ssh/id_dsa',{'empty for no':''})
 		#shutit.send('docker pull imiell/docker-dev-tools-image')
 
-		shutit.logout(command='reboot')
 		shutit.logout()
 		shutit.logout()
 		return True
@@ -155,7 +155,7 @@ end''')
 		shutit.get_config(self.module_id,'vagrant_provider',default='virtualbox')
 		shutit.get_config(self.module_id,'shutittkpass')
 		shutit.get_config(self.module_id,'imiellpass')
-		shutit.get_config(self.module_id,'gui',default='true')
+		shutit.get_config(self.module_id,'gui')
 		shutit.get_config(self.module_id,'memory',default='3072')
 		return True
 
