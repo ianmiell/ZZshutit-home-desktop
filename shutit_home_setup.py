@@ -134,7 +134,7 @@ end''')
 		shutit.send('cd /space/git')
 		shutit.send('git clone --depth=1 https://github.com/ianmiell/shutit')
 		shutit.send('git clone --depth=1 https://github.com/ianmiell/shutit-templates')
-		shutit.multisend('git clone ssh://imiell@shutit.tk:/var/cache/git/work.git',{'assword':shutit.cfg[self.module_id]['shutittkpass'],'continue connecting':'yes'})
+		shutit.multisend('git clone --depth=1 ssh://imiell@shutit.tk:/var/cache/git/work.git',{'assword':shutit.cfg[self.module_id]['shutittkpass'],'continue connecting':'yes'})
 
 		shutit.send('git clone --depth=1 https://github.com/ianmiell/dotfiles ~imiell/.dotfiles')
 		shutit.send('cd ~/.dotfiles')
