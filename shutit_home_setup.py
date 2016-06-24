@@ -144,6 +144,11 @@ end''')
 		shutit.multisend('./script/bootstrap',{'author name':'Ian Miell','author email':'ian.miell@gmail.com','want to do':'o'})
 		shutit.send('local-gen')
 		shutit.send('localectl set-locale LANG="en_GB.UTF-8"')
+
+		shutit.send('apt-add-repository ppa:zanchey/asciinema',expect='ENTER')
+		shutit.send('')
+		shutit.send('apt-get update')
+		shutit.send('apt-get install asciinema')
 		#shutit.multisend('ssh-keygen -f ~/.ssh/id_dsa',{'empty for no':''})
 		#shutit.send('docker pull imiell/docker-dev-tools-image')
 
