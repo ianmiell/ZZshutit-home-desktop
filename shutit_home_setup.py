@@ -143,7 +143,7 @@ end''')
 		shutit.send('cd ~/.dotfiles')
 		shutit.multisend('./script/bootstrap',{'author name':'Ian Miell','author email':'ian.miell@gmail.com','want to do':'o'})
 		shutit.send('local-gen')
-		shutit.send('localectl set-locale LANG="en_GB.UTF-8"')
+		shutit.send('localectl set-locale LANG="en_US.UTF-8"')
 
 		shutit.send('apt-add-repository ppa:zanchey/asciinema',expect='ENTER')
 		shutit.send('')
