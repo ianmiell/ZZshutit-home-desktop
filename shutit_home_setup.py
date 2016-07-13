@@ -137,6 +137,7 @@ end''')
 		shutit.send('')
 		shutit.send('apt-get update')
 		shutit.send('apt-get install asciinema')
+		shutit.send('pip install jira-cli')
 
 		shutit.set_password(shutit.cfg[self.module_id]['imiellpass'], user='imiell')
 		
@@ -155,7 +156,11 @@ end''')
 
 		#shutit.multisend('ssh-keygen -f ~/.ssh/id_dsa',{'empty for no':''})
 		#shutit.send('docker pull imiell/docker-dev-tools-image')
-
+		shutit.send('jira-cli configure',expect='Base url')
+		shutit.send(shutit.cfg[self.module_id]['jiraserver'],expect='sername')
+		shutit.send('ian.miell@gmail.com',expect='assword')
+		shutit.send(shutit.cfg[self.module_id]['jirapass'],expect='persist')
+		shutit.send('y')
 		shutit.logout()
 		shutit.logout()
 		return True
@@ -172,6 +177,8 @@ end''')
 		shutit.get_config(self.module_id,'vagrant_provider',default='virtualbox')
 		shutit.get_config(self.module_id,'shutittkpass')
 		shutit.get_config(self.module_id,'imiellpass')
+		shutit.get_config(self.module_id,'jirapass')
+		shutit.get_config(self.module_id,'jiraserver')
 		shutit.get_config(self.module_id,'gui')
 		shutit.get_config(self.module_id,'memory',default='3072')
 		return True
