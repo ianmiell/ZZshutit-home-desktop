@@ -103,6 +103,7 @@ end''')
 		#google chrome?
 		shutit.send('apt-get upgrade -y')
 		shutit.install('git')
+		shutit.install('git-extras')
 		shutit.install('docker.io')
 		shutit.install('python-pip')
 		shutit.install('vim')
