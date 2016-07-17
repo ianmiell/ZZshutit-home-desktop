@@ -124,6 +124,8 @@ end''')
 		shutit.install('html2text')
 		shutit.send('pip install shutit')
 		shutit.send('apt-file update')
+		shutit.install('npm')
+		shutit.send('npm install -g mermaid')
 
 		shutit.send('useradd -m -s /bin/bash imiell')
 		shutit.send('usermod -G sudo -a imiell')
@@ -152,6 +154,7 @@ end''')
 		shutit.multisend('./script/bootstrap',{'author name':'Ian Miell','author email':'ian.miell@gmail.com','want to do':'o'})
 		shutit.send('locale-gen')
 		shutit.send('localectl set-locale LANG="en_US.UTF-8"')
+
 
 		#shutit.multisend('ssh-keygen -f ~/.ssh/id_dsa',{'empty for no':''})
 		#shutit.send('docker pull imiell/docker-dev-tools-image')
