@@ -179,11 +179,11 @@ end''')
 		# shutit.cfg[self.module_id]['myconfig']
 		shutit.get_config(self.module_id,'vagrant_image',default='ubuntu/xenial64')
 		shutit.get_config(self.module_id,'vagrant_provider',default='virtualbox')
-		shutit.get_config(self.module_id,'shutittkpass')
-		shutit.get_config(self.module_id,'imiellpass')
-		shutit.get_config(self.module_id,'jirapass')
+		shutit.get_config(self.module_id,'shutittkpass',secret=True)
+		shutit.get_config(self.module_id,'imiellpass',secret=True)
+		shutit.get_config(self.module_id,'jirapass',secret=True)
 		shutit.get_config(self.module_id,'jiraserver')
-		shutit.get_config(self.module_id,'gui')
+		shutit.get_config(self.module_id,'gui',hint='true or false')
 		shutit.get_config(self.module_id,'memory',default='3072')
 		return True
 
