@@ -138,10 +138,11 @@ end''')
 
 		shutit.send('locale-gen')
 		shutit.send('localectl set-locale LANG="en_GB.UTF-8"')
-		shutit.send('apt-add-repository ppa:zanchey/asciinema',expect='ENTER')
-		shutit.send('')
-		shutit.send('apt-get update')
-		shutit.send('apt-get install asciinema')
+		# Appears to fail
+		#shutit.send('apt-add-repository ppa:zanchey/asciinema',expect='ENTER')
+		#shutit.send('')
+		#shutit.send('apt-get update')
+		#shutit.send('apt-get install asciinema')
 		shutit.send('pip install jira-cli')
 
 		shutit.set_password(shutit.cfg[self.module_id]['imiellpass'], user='imiell')
