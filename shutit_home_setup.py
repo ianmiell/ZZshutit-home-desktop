@@ -155,9 +155,6 @@ end''')
 		shutit.send('git clone --depth=1 https://github.com/ianmiell/dotfiles ~imiell/.dotfiles')
 		shutit.send('cd ~/.dotfiles')
 		shutit.multisend('./script/bootstrap',{'author name':'Ian Miell','author email':'ian.miell@gmail.com','want to do':'o'})
-		shutit.send('locale-gen')
-		shutit.send('localectl set-locale LANG="en_US.UTF-8"')
-
 
 		#shutit.multisend('ssh-keygen -f ~/.ssh/id_dsa',{'empty for no':''})
 		#shutit.send('docker pull imiell/docker-dev-tools-image')
@@ -185,7 +182,7 @@ end''')
 		shutit.get_config(self.module_id,'jirapass',secret=True)
 		shutit.get_config(self.module_id,'jiraserver')
 		shutit.get_config(self.module_id,'gui',hint='true or false')
-		shutit.get_config(self.module_id,'memory',default='3072')
+		shutit.get_config(self.module_id,'memory',default='2048')
 		return True
 
 
