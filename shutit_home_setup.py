@@ -158,6 +158,9 @@ end''')
 		shutit.multisend('./script/bootstrap',{'author name':'Ian Miell','author email':'ian.miell@gmail.com','want to do':'o'})
 		shutit.send('localectl set-locale LANG="en_US.UTF-8"')
 
+		# AWS guide
+		shutit.send('git clone --depth=1 https://github.com/open-guides/og-aws')
+
 		#shutit.multisend('ssh-keygen -f ~/.ssh/id_dsa',{'empty for no':''})
 		#shutit.send('docker pull imiell/docker-dev-tools-image')
 		#shutit.send('jira-cli configure',expect='Base url')
