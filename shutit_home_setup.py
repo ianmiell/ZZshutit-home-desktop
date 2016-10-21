@@ -161,6 +161,10 @@ end''')
 		# AWS guide
 		shutit.send('git clone --depth=1 https://github.com/open-guides/og-aws')
 
+		# Asciidocfx
+		shutit.send('cd')
+		shutit.send('curl https://github.com/asciidocfx/AsciidocFX/releases/download/v1.4.8/AsciidocFX_Linux.tar.gz | tar -zxvf -')
+
 		#shutit.multisend('ssh-keygen -f ~/.ssh/id_dsa',{'empty for no':''})
 		#shutit.send('docker pull imiell/docker-dev-tools-image')
 		#shutit.send('jira-cli configure',expect='Base url')
