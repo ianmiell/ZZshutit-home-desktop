@@ -77,9 +77,9 @@ class shutit_home_setup(ShutItModule):
 		gui = shutit.cfg[self.module_id]['gui']
 		memory = shutit.cfg[self.module_id]['memory']
 		module_name = 'shutit_home_setup_' + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))
-		shutit.send('rm -rf /tmp/' + module_name + ' && mkdir -p /tmp/' + module_name + ' && cd /tmp/' + module_name)
+		shutit.send('rm -rf ~/' + module_name + ' && mkdir -p ~/' + module_name + ' && cd ~/' + module_name)
 		shutit.send('vagrant init ' + vagrant_image)
-		shutit.send_file('/tmp/' + module_name + '/Vagrantfile','''
+		shutit.send_file('~/' + module_name + '/Vagrantfile','''
 Vagrant.configure(2) do |config|
   config.vm.box = "''' + vagrant_image + '''"
   # config.vm.box_check_update = false
