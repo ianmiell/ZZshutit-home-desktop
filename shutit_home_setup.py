@@ -168,7 +168,7 @@ end''')
 		shutit.send('cd')
 		shutit.send('curl https://github.com/asciidocfx/AsciidocFX/releases/download/v1.4.8/AsciidocFX_Linux.tar.gz | tar -zxvf -')
 
-		shutit.send('add-apt-repository ppa:caffeine-developers/ppa')
+		shutit.multisend('add-apt-repository ppa:caffeine-developers/ppa',{'ENTER':''})
 		shutit.send('apt-get update -y')
 		shutit.install('caffeine')
 
