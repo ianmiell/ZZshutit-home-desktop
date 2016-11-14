@@ -168,6 +168,10 @@ end''')
 		shutit.send('cd')
 		shutit.send('curl https://github.com/asciidocfx/AsciidocFX/releases/download/v1.4.8/AsciidocFX_Linux.tar.gz | tar -zxvf -')
 
+		shutit.send('add-apt-repository ppa:caffeine-developers/ppa')
+		shutit.send('apt-get update -y')
+		shutit.install('caffeine')
+
 		#shutit.multisend('ssh-keygen -f ~/.ssh/id_dsa',{'empty for no':''})
 		#shutit.send('docker pull imiell/docker-dev-tools-image')
 		#shutit.send('jira-cli configure',expect='Base url')
