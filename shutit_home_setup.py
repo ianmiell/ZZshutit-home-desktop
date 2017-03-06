@@ -129,6 +129,7 @@ end''')
 		shutit.install('npm')
 		shutit.install('nodejs-legacy')
 		shutit.send('npm install -g mermaid')
+		shutit.install('shellcheck')
 
 		shutit.send('useradd -m -s /bin/bash imiell')
 		shutit.send('usermod -G sudo -a imiell')
