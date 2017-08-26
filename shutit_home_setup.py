@@ -130,6 +130,7 @@ end''')
 		shutit.send('apt-file update')
 		shutit.install('npm')
 		shutit.install('nodejs-legacy')
+		shutit.install('gnuplot')
 		shutit.send('npm install -g mermaid')
 
 		shutit.send('useradd -m -s /bin/bash imiell')
