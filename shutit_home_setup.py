@@ -4,6 +4,7 @@
 from shutit_module import ShutItModule
 import random
 import string
+import os
 
 class shutit_home_setup(ShutItModule):
 
@@ -76,10 +77,11 @@ class shutit_home_setup(ShutItModule):
 		vagrant_provider = shutit.cfg[self.module_id]['vagrant_provider']
 		gui = shutit.cfg[self.module_id]['gui']
 		memory = shutit.cfg[self.module_id]['memory']
+		home_dir = os.path.expanduser('~')
 		module_name = 'shutit_home_setup_' + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))
-		shutit.send('rm -rf /tmp/' + module_name + ' && mkdir -p /tmp/' + module_name + ' && cd /tmp/' + module_name)
+		shutit.send('rm -rf ' + home_dir + '/' + module_name + ' && mkdir -p ' + home_dir + '/' + module_name + ' && cd ' + home_dir + '/' + module_name)
 		shutit.send('vagrant init ' + vagrant_image)
-		shutit.send_file('/tmp/' + module_name + '/Vagrantfile','''
+		shutit.send_file(home_dir + '/' + module_name + '/Vagrantfile','''
 Vagrant.configure(2) do |config|
   config.vm.box = "''' + vagrant_image + '''"
   # config.vm.box_check_update = false
@@ -128,6 +130,7 @@ end''')
 		shutit.send('apt-file update')
 		shutit.install('npm')
 		shutit.install('nodejs-legacy')
+		shutit.install('gnuplot')
 		shutit.send('npm install -g mermaid')
 		shutit.install('shellcheck')
 
@@ -139,10 +142,11 @@ end''')
 
 		shutit.send('locale-gen')
 		shutit.send('localectl set-locale LANG="en_GB.UTF-8"')
-		shutit.send('apt-add-repository ppa:zanchey/asciinema',expect='ENTER')
-		shutit.send('')
-		shutit.send('apt-get update')
-		shutit.send('apt-get install asciinema')
+		# Appears to fail
+		#shutit.send('apt-add-repository ppa:zanchey/asciinema',expect='ENTER')
+		#shutit.send('')
+		#shutit.send('apt-get update')
+		#shutit.send('apt-get install asciinema')
 		shutit.send('pip install jira-cli')
 
 		shutit.set_password(shutit.cfg[self.module_id]['imiellpass'], user='imiell')
@@ -165,6 +169,10 @@ end''')
 		# Asciidocfx
 		shutit.send('cd')
 		shutit.send('curl https://github.com/asciidocfx/AsciidocFX/releases/download/v1.4.8/AsciidocFX_Linux.tar.gz | tar -zxvf -')
+
+		shutit.multisend('add-apt-repository ppa:caffeine-developers/ppa',{'ENTER':''})
+		shutit.send('apt-get update -y')
+		shutit.install('caffeine')
 
 		#shutit.multisend('ssh-keygen -f ~/.ssh/id_dsa',{'empty for no':''})
 		#shutit.send('docker pull imiell/docker-dev-tools-image')
@@ -189,8 +197,8 @@ end''')
 		shutit.get_config(self.module_id,'vagrant_provider',default='virtualbox')
 		shutit.get_config(self.module_id,'shutittkpass',secret=True)
 		shutit.get_config(self.module_id,'imiellpass',secret=True)
-		shutit.get_config(self.module_id,'jirapass',secret=True)
-		shutit.get_config(self.module_id,'jiraserver')
+		#shutit.get_config(self.module_id,'jirapass',secret=True)
+		#shutit.get_config(self.module_id,'jiraserver')
 		shutit.get_config(self.module_id,'gui',hint='true or false')
 		shutit.get_config(self.module_id,'memory',default='2048')
 		return True
