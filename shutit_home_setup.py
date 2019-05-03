@@ -103,6 +103,12 @@ end''')
 		#git repos
 		#flash player?
 		#google chrome?
+
+		# Virtualbox  keys
+		shutit.send('wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -')
+		shutit.send('wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -')
+
+		# Install
 		shutit.send('apt-get upgrade -y')
 		shutit.install('git')
 		shutit.install('git-extras')
@@ -134,6 +140,7 @@ end''')
 		shutit.send('npm install -g mermaid')
 		shutit.install('shellcheck')
 
+
 		shutit.send('useradd -m -s /bin/bash imiell')
 		shutit.send('usermod -G sudo -a imiell')
 		shutit.send('usermod -G docker -a imiell')
@@ -150,9 +157,9 @@ end''')
 		shutit.send('pip install jira-cli')
 
 		shutit.set_password(shutit.cfg[self.module_id]['imiellpass'], user='imiell')
-		
+
 		shutit.login(command='su - imiell')
-		
+
 		shutit.send('cd /space/git')
 		shutit.send('git clone --depth=1 https://github.com/ianmiell/shutit')
 		shutit.send('git clone --depth=1 https://github.com/ianmiell/shutit-templates')
